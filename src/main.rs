@@ -5,16 +5,16 @@ use serde::Serialize;
 use std::env;
 use std::{fs, thread, time::Duration};
 
-/// 批量发送内容到 Flomo 的 CLI 工具（仅支持 txt 文件）
+/// 批量发送内容到 Flomo 的 CLI 工具
 #[derive(Parser, Debug)]
-#[command(author, version, about)]
+#[command(author, version, about, long_about = None, arg_required_else_help = true)]
 struct Args {
-    /// 输入的文本文件路径（txt 格式）
-    #[arg(short, long)]
+    /// 输入的 txt 文件路径
+    #[arg(value_name = "FILE")]
     file: String,
 
-    /// 是否只预览内容不发送
-    #[arg(long)]
+    /// 仅预览内容，不发送
+    #[arg(short = 'p', long = "preview")]
     dry_run: bool,
 }
 
